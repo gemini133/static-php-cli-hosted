@@ -16,9 +16,7 @@ jobs:
           - "8.2"
           - "8.3"
         operating-system:
-          - "ubuntu-latest"
           - "macos-13"
-          - "debian-arm64-self-hosted"
           - "macos-14"
         extensions:
           - pcntl,posix,mbstring,tokenizer,phar
