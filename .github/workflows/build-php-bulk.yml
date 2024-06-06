@@ -15,7 +15,7 @@ jobs:
         operating-system:
           - "macos-13"
         extensions:
-          - mongodb,apcu,bcmath,bz2,calendar,ctype,curl,dba,dom,event,exif,fileinfo,filter,ftp,gd,gmp,iconv,imagick,imap,intl,mbregex,mbstring,mysqli,mysqlnd,opcache,openssl,pcntl,pdo,pdo_mysql,pgsql,phar,posix,readline,redis,session,shmop,simplexml,soap,sockets,sodium,sqlite3,sysvmsg,sysvsem,sysvshm,tokenizer,xml,xmlreader,xmlwriter,xsl,zip,zlib
+          - apcu,bcmath,bz2,calendar,ctype,curl,dba,dom,event,exif,fileinfo,filter,ftp,gd,gmp,iconv,imagick,imap,intl,mbregex,mbstring,mysqli,mysqlnd,opcache,openssl,pcntl,pdo,pdo_mysql,pgsql,phar,posix,readline,redis,session,shmop,simplexml,soap,sockets,sodium,sqlite3,sysvmsg,sysvsem,sysvshm,tokenizer,xml,xmlreader,xmlwriter,xsl,zip,zlib
     steps:
       - name: "Checkout"
         uses: "actions/checkout@v4"
@@ -47,16 +47,10 @@ jobs:
         run: |
           chmod +x spc
           ./spc --version
-
-      - id: cache-download
-        uses: actions/cache@v3
-        with:
-          path: downloads
-          key: php-${{ matrix.php-version }}-dependencies-for-bulk-extensions
       
       # If there's no dependencies cache, fetch sources
       - name: "Download sources"
-        run: ./spc download --with-php=${{ matrix.php-version }} --for-extensions=${{ matrix.extensions }} --retry=3
+        run: ./spc download --with-php=${{ matrix.php-version }} --for-extensions=${{ matrix.extensions }} --retry=5
 
       - name: "Build library: ${{ matrix.library }}"
         run: |
