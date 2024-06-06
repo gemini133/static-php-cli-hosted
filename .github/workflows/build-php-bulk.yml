@@ -51,7 +51,7 @@ jobs:
       
       # If there's no dependencies cache, fetch sources
       - name: "Download sources"
-        run: ./spc download --with-php=${{ matrix.php-version }} --for-extensions=${{ matrix.extensions }} --retry=5
+        run: ./spc download --with-php=${{ matrix.php-version }} --for-extensions=${{ matrix.extensions }} --retry=5 --clean --debug -vvv
 
       - name: "Build library: ${{ matrix.library }}"
         run: |
