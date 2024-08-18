@@ -11,6 +11,7 @@ jobs:
       fail-fast: false
       matrix:
         php-version:
+          - "8.3"
           - "8.2"
         operating-system:
           - "macos-14"
